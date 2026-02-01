@@ -11,13 +11,11 @@ export default function SEO() {
   // Normalize host so it matches how values are stored in DB
   const rawHost = window.location.hostname || "";
   const normalizedHost = rawHost.replace(/^www\./i, "").toLowerCase();
-  // Allow overriding the site for local/dev via env (e.g. VITE_SEO_SITE=A3satta.vip)
-  const site = (import.meta.env.VITE_SEO_SITE || normalizedHost || "A3satta.vip").toLowerCase();
+  const site = (import.meta.env.VITE_SEO_SITE || normalizedHost || "a3satta.co").toLowerCase();
 
   useEffect(() => {
     const fetchSEO = async () => {
       try {
-        // Use the full pathname for page (so /chart-2026/agra-satta-king-result matches backend)
         const page = location.pathname;
         const { data } = await api.get(
           `/seo/get?page=${encodeURIComponent(page)}&site=${encodeURIComponent(site)}`
